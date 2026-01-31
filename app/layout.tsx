@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Schibsted_Grotesk, Martian_Mono } from "next/font/google";
 import "./globals.css";
 import LightRays from '../components/LightRays';
+import { PHProvider } from './providers/posthog';
+import PostHogPageView from "./providers/PostHogPageView";
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: "--font-schibsted-grotesk",
@@ -46,8 +48,10 @@ export default function RootLayout({
           />
        </div>
         <main>
+          <PHProvider>
+            <PostHogPageView />
           {children}
-
+        </PHProvider>
         </main>
         
       </body>
