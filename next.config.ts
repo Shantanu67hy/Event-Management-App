@@ -1,6 +1,6 @@
 const nextConfig = {
   typescript:{
-    ignoreBuildErrors: true;
+    ignoreBuildErrors: true,
   },
   cacheComponents: true,
   images: {
