@@ -37,7 +37,7 @@ const EventTags = ({ tags }: { tags: string[] }) => (
 const EventDetails = async ({ params }: { params: Promise<{ slug: string }> }) => {
     'use cache'
     cacheLife('hours');
-    const { slug } = await params; // ✅ correctly destructure slug
+    const slug  = await params; // ✅ correctly destructure slug
 
     // rest of your code... 
 
