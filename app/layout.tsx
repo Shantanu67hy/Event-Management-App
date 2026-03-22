@@ -51,12 +51,12 @@ export default function RootLayout({
           />
        </div>
       <main>
+         <Suspense fallback={null}>
   <PHProvider>
-    <Suspense fallback={null}>
       <PostHogPageView />
-    </Suspense>
     {children}
   </PHProvider>
+            </Suspense>
 </main>
         
       </body>
