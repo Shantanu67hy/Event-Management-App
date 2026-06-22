@@ -49,6 +49,7 @@ export default function RootLayout({
             fadeDistance={1}
             saturation={1}
           />
+
         </div>
         <main>
           <Suspense fallback={null}>
@@ -58,6 +59,15 @@ export default function RootLayout({
             </PHProvider>
           </Suspense>
         </main>
+       </div>
+      <main>
+         <Suspense fallback={null}>
+  <PHProvider>
+      <PostHogPageView />
+    {children}
+  </PHProvider>
+            </Suspense>
+</main>
       </body>
     </html>
   );
