@@ -11,14 +11,38 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { success } = await createBooking({ eventId, slug, email });
+    console.log("Submitting booking:", {
+      eventId,
+      slug,
+      email,
+    });
 
-    if (success) {
+    const result = await createBooking({
+      eventId,
+      slug,
+      email,
+    });
+
+    console.log("Booking Result:", result);
+
+    if (result.success) {
       setSubmitted(true);
-      posthog.capture("event_booked", { eventId, slug, email });
-    } else {
-      console.error("Booking creation failed");
-      posthog.captureException("Booking creation failed");
+
+      if (result.success) {
+        setSubmitted(true);
+
+        posthog.capture("event_booked", {
+          eventId,
+          slug,
+          email,
+        });
+      } else {
+        console.error("Booking creation failed:", result.error);
+
+        posthog.captureException(
+          new Error(result.error || "Booking creation failed"),
+        );
+      }
     }
   };
 
